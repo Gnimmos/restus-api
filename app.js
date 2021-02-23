@@ -11,7 +11,7 @@ var getterm = require('./sql/get-terminals');
 var gettype = require('./sql/get-types');
 var router = express.Router();
 var cors = require('cors')
-// const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 var bodyParser = require('body-parser')
 
 app.use(cors());
@@ -47,7 +47,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.listen(5000, function () {
+app.listen(port, function () {
 });
 
 
