@@ -1,0 +1,23 @@
+{
+  "name": "restus1",
+  "version": "1.0.0",
+  "description": "serverside app",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [
+    "firstapp"
+  ],
+  "author": "gnimmo",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mssql": "^6.3.1",
+    "router": "^1.3.5"
+  }
+}

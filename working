@@ -1,0 +1,49 @@
+var express = require('express');
+var app = express();
+require('dotenv').config();
+var query = require('./sql/sql');
+app.get('/', function (req, res) {
+   
+    var sql = require("mssql");
+
+    // connect to your database
+    sql.connect({
+        "server": process.env.SQL_SERVER,
+        "port": parseInt(process.env.SQL_PORT),
+        "user": process.env.SQL_USER,
+        "password": process.env.SQL_PASSWORD,
+        "database": process.env.SQL_DATABASE,
+        multipleStatements: true,
+        "options": {
+            "encrypt": false,
+            "enableArithAbort":false,
+		}
+
+     } , function (err) {
+    
+        if (err) console.log(err);
+        module.exports = sql;
+        // create Request object
+        var request = new sql.Request();
+           
+        // query to the database and get the records
+        request.query('SELECT TerminalName,TerminalSN from access_terminal', function (err, recordset) {
+            console.dir(recordset)
+
+            if (err) console.log(err)
+
+            // send records as a response
+            res.send(recordset);
+            console.dir(recordset)
+
+            
+        });
+    });
+});
+app.listen(5000, function () {
+    console.log(process.env.SQL_PORT);
+
+    console.log('Server is running..');
+
+});
+
