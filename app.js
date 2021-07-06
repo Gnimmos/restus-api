@@ -22,9 +22,22 @@ const port = process.env.PORT || 5000;
 const dir = path.join(__dirname, 'public');
 
 app.use(  cors({
-  origin: 'https://actaweb.netlify.app/',
+  origin: 'https://actaweb.netlify.app',//http://wolvestalk.commedia.wiki/
   credentials: false,
 }));
+
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin: *');
+  res.header('Access-Control-Allow-Methods: *');
+  res.header('Access-Control-Allow-Headers: *');
+  next();
+});
+app.all('/', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next()
+});
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -81,11 +94,6 @@ app.post('/changeenddatecomp',async(req, res) =>  {
 
 
 app.use(express.static(dir));
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "https://actaweb.netlify.app/"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 app.listen(port, function () {
 });
