@@ -50,7 +50,7 @@ app.use('/getterm',getterm);
 app.use('/gettype',gettype);
 app.use('/withoutcompares',withoutcompares);
 
-
+//change dates
 app.post('/changedate',async(req, res) =>  {
   var date = req.body.startd;
   console.log('The date: ' + date);
