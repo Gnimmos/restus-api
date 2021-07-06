@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var app = express();
+const bodyParser = require('body-parser');
 require('dotenv').config();
 var sql = require('./sql/sql');
 var withoutcompares  = require('./sql/withoutcompares');
@@ -9,12 +10,21 @@ var getdep = require('./sql/get-departments');
 var getemp = require('./sql/get-emplyees'); 
 var getterm = require('./sql/get-terminals');
 var gettype = require('./sql/get-types');
-var router = express.Router();
-var cors = require('cors')
-const port = process.env.PORT || 5000;
-var bodyParser = require('body-parser')
+const change = require('./queries/datachange');
+const changeenddate = require('./queries/enddatechange');
+const changecomp = require('./queries/changeenddate');
+const changeenddatecomp = require('./queries/choosestartdate');
 
-app.use(cors());
+var router = express.Router();
+var cors = require('cors');
+const { endianness } = require('os');
+const port = process.env.PORT || 5000;
+const dir = path.join(__dirname, 'public');
+
+app.use(  cors({
+  origin: 'http://localhost:3000',
+  credentials: false,
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -41,6 +51,36 @@ app.use('/gettype',gettype);
 app.use('/withoutcompares',withoutcompares);
 
 
+app.post('/changedate',async(req, res) =>  {
+  var date = req.body.startd;
+  console.log('The date: ' + date);
+  change.cangedate(date);
+  res.json({ ok: true });
+}); 
+
+app.post('/changeenddate',async(req, res) =>  {
+  var date = req.body.startd;
+  console.log('The date: ' + date);
+  changeenddate.cangeenddate(date);
+  res.json({ ok: true });
+}); 
+
+app.post('/changecomp',async(req, res) =>  {
+  var date = req.body.startd;
+  console.log('The date: ' + date);
+  change.cangedate(date);
+  res.json({ ok: true });
+}); 
+
+app.post('/changeenddatecomp',async(req, res) =>  {
+  var date = req.body.startd;
+  console.log('The date: ' + date);
+  changeenddate.cangeenddate(date);
+  res.json({ ok: true });
+}); 
+
+
+app.use(express.static(dir));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000/"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

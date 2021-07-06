@@ -12,8 +12,9 @@ declare @idtype varchar(100)
 
 
 
-set @fromdate='2018-01-01 03:00:00'
-set @todate='2019-12-01 03:00:00'
+set @fromdate='2021-06-21 01:1:01'
+
+set @todate='2021-07-6 18:37:36'
 
 set @idterminal='outlet comparing or remove comapare'
 --user id to get ore remove compare
