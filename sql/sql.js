@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/', async(req, res) => {
       console.log('two');
 
-    const users = fs.readFileSync(path.join(__dirname, '../sql/getEvents.sql')).toString();
+    const users = fs.readFileSync(path.join(__dirname, '../sql/compares.sql')).toString();
     connection.query(users,  (err, result) => {
         if (err){
           console.log(err);
