@@ -17,8 +17,8 @@ router.get('/', async(req, res) => {
              throw err;
           
         }else{
+          res.send(result.recordset);
             console.log(result);
-
         }
     
         });
