@@ -2,7 +2,7 @@ const { json } = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 
-function cangeenddate(date) {
+await function cangeenddate(date) {
 
 
   fs.readFile(path.join(__dirname, '../sql/withoutcompares.sql'), 'utf8', function (err,data) {

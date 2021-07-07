@@ -22,8 +22,13 @@ const port = process.env.PORT || 5000;
 const dir = path.join(__dirname, 'public');
 
 app.use(  cors({
+  origin: 'https://actaweb.netlify.app/',
+  credentials: false,
+}));
+app.use(  cors({
   origin: 'https://actaweb.netlify.app',//http://wolvestalk.commedia.wiki/
   credentials: false,
+  methods: "Fetch"
 }));
 
 app.use(function(req, res, next) {
