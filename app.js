@@ -21,9 +21,13 @@ const { endianness } = require('os');
 const port = process.env.PORT || 5000;
 const dir = path.join(__dirname, 'public');
 
+
 app.use(  cors({
-  origin: 'https://actaweb.netlify.app/',
+  origin: 'https://actaweb.netlify.app',//http://wolvestalk.commedia.wiki/
   credentials: false,
+  optionsSuccessStatus: 200,
+  methods: "GET, PUT, FETCH, POST"
+
 }));
 
 app.use(function(req, res, next) {
