@@ -25,11 +25,6 @@ app.use(  cors({
   origin: 'https://actaweb.netlify.app/',
   credentials: false,
 }));
-app.use(  cors({
-  origin: 'https://actaweb.netlify.app',//http://wolvestalk.commedia.wiki/
-  credentials: false,
-  methods: "Fetch"
-}));
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin: *');
